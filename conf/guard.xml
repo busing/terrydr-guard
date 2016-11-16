@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<guard>
+    <mailserver>
+        <sender>ytai@terrydr.com</sender>
+        <smtp>smtp.ym.163.com</smtp>
+        <port>25</port>
+        <password>123456</password>
+    </mailserver>
+    <reciver>ytai@terrydr.com</reciver>
+    <application>
+        <name>tomcat</name>
+        <key>tomcat</key>
+        <startup>sh /usr/local/tomcat/bin/startup.sh</startup>
+        <guard>yes</guard>
+    </application>
+</guard>

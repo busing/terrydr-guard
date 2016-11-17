@@ -6,34 +6,43 @@ from MailSender import *
 import sys
 import time
 
+
 options=sys.argv[1] if len(sys.argv)>1 else ""
 application=sys.argv[2] if len(sys.argv)>2 else ""
 key=sys.argv[3] if len(sys.argv)>3 else ""
 startup=sys.argv[4] if len(sys.argv)>4 else ""
 
 
-conf= ConfLoad()
+conf = ConfLoad()
 
 def guard():
-	crashList=[]
-	for g in conf.guardList:
-		if g.guard:
-			if not g.checkAlive():
-				print g.name,"is not running ,startup"
-				g.startUp()
-				crashList.append(g.name)
-				pass
-				print "\n"
-			else:
-				print g.name,"is running\n"
-				pass
+	try:
+		if len(conf.guardList)>0:
+			crashList=[]
+			for g in conf.guardList:
+				if g.guard:
+					if not g.checkAlive():
+						print g.name,"is not running ,startup"
+						g.startUp()
+						crashList.append(g.name)
+						pass
+					else:
+						print g.name,"is running\n"
+						pass
+				else:
+					print "skip "+g.name
 
-	if len(crashList) >0:
-		content=""
-		for name in crashList:
-			content+='\napplication \"'+name+'\" is breakdown,  terrydrGuard has startup it'
-
-		content+="\ncheck at: "+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) 
+			if len(crashList) >0:
+				content=""
+				for name in crashList:
+					content+='\napplication \"'+name+'\" is breakdown,  terrydrGuard has startup it'
+				content+="\ncheck at: "+time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) 
+				Mail.send(content)
+		else:
+			print "error: no application for guard"
+	except BaseException:
+		content="terrydr guard occur a excetion"
+		print content
 		Mail.send(content)
 
 

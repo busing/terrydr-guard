@@ -4,9 +4,12 @@
 import smtplib
 import time
 import os
+import socket
+import traceback
 from email.mime.text import MIMEText
 from email.header import Header
 from email.utils import parseaddr, formataddr
+
 
 class Mail:
 
@@ -23,7 +26,7 @@ class Mail:
 			if Mail.timeToSendMail():
 				reciverArr=Mail.reciver.split(",")
 
-				msg=MIMEText(content+"\n\n[from terrydrGuard]",'plain','utf-8')
+				msg=MIMEText(content+"\n\n[from terrydrGuard , hostname:"+socket.gethostname()+"]",'plain','utf-8')
 				msg['To']=Mail.formatAddr(u'攻城师们 <%s>' % Mail.reciver)
 				msg['From']=Mail.formatAddr(u'TerrydrGuard <%s>' % Mail.sender)
 				msg['Subject']=Header('【Warning】some application is breakdown',"utf-8")
@@ -35,8 +38,9 @@ class Mail:
 				print "send mail to",Mail.reciver
 				Mail.saveSendTime()
 
-		except Exception:  #如果try中的语句没有执行，则会执行下面的ret=False
+		except Exception,e:  #如果try中的语句没有执行，则会执行下面的ret=False
 			print "Error: send mail exception"
+			print traceback.format_exc()
 
 
 	@classmethod
@@ -73,3 +77,4 @@ class Mail:
 		else:
 			return False
 
+	

@@ -11,12 +11,13 @@ chmod +x build.sh
 ```
   当前目录会生成一个terrydr-guard.tar.gz的安装包
 
-##2.安装
+##2.安装和卸载
 ```shell
 tar -xzvf terrydr-guard.tar.gz
 cd terrydr-guard
 chmod +x install.sh
 ./install.sh install #执行安装
+./install.sh uninstall #执行卸载
 ```
   安装目录在:/usr/local/guard
   安装之后会自动注册到/etc/rc.local 服务器重启自动启动GuardServer服务
@@ -38,7 +39,7 @@ python TerrydrGuard.py startmonitor tomcat #启动监控某个服务
 python TerrydrGuard.py del tomcat #删除某个服务
 ```
 
-##5配置文件
+##5.配置文件
 ```xml
 <?xml version='1.0' encoding='utf-8'?>
 <guard>
@@ -61,5 +62,12 @@ python TerrydrGuard.py del tomcat #删除某个服务
 </guard>
 ```
   application 节点的配置，可以用TerrydrGuard.py 工具代替，免去手工修改的麻烦
+  
+
+##6.通知邮件内容
+    application "tomcat" is breakdown,  terrydrGuard has startup it
+    check at: 2016-11-18 14:21:04
+
+    [from terrydrGuard , hostname:taiyuandembp.local]
   
 

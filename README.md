@@ -49,7 +49,7 @@ python TerrydrGuard.py del tomcat #删除某个服务
         <port>25</port>
         <password>xxxxxx</password>
     </mailserver>
-    <!--程序崩溃通知邮箱, 注意如果监控的服务崩溃，无法被启动，邮件不会一直发送，间隔15分钟再次发送->
+    <!--程序崩溃通知邮箱, 注意如果监控的服务崩溃，无法被启动，邮件不会一直发送，间隔15分钟再次发送-->
     <reciver>xxx1@xxx.com,xxx2@xxx.com,xxx3@xxx.com</reciver>
     <application>
         <name>tomcat</name>

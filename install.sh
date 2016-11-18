@@ -1,5 +1,7 @@
 #jdk安装目录
 install_path="/usr/local/guard"
+profile="/etc/rc.local"
+
 
 #正常日志打印
 log(){
@@ -47,6 +49,7 @@ instal()
 		mkdir -p $install_path
 		log "copy files "
 		cp -r * $install_path
+		rm $install_path/install.sh
 		# reconf
 		logSucc "installed"
 		python ${install_path}/GuardServer.py &
@@ -76,7 +79,10 @@ uninstall()
 clearconf()
 {
 	#清理已有配置
-	return 0
+	sed -i '/. \/etc\/profile/'d $profile
+	sed -i '/python \/usr\/local\/guard\/GuardServer.py/'d $profile
+	sed -i 'exit 0'd $profile
+
 }
 
 
@@ -85,8 +91,11 @@ reconf()
 {
 	log "config file"
 	#清理已有配置
-	# clearconf
+	clearconf
 	#添加新配置 追加配置
+	echo '. /etc/profile' >> $profile
+	echo 'python /usr/local/guard/GuardServer.py &' >> $profile
+	echo 'exit 0' >> $profile
 }
 
 ##命令入口

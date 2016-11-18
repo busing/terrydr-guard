@@ -6,11 +6,11 @@
         <port>25</port>
         <password>5cy5v2oYxl</password>
     </mailserver>
-    <reciver>ytai@terrydr.com,ftwang@terrydr.com,zyyan@terrydr.com,syju@terrydr.com</reciver>
+    <reciver>ftwang@terrydr.com,ytai@terrydr.com</reciver>
     <application>
         <name>tomcat</name>
         <key>tomcat</key>
         <startup>sh /usr/local/tomcat/bin/startup.sh</startup>
-        <guard>no</guard>
+        <guard>yes</guard>
     </application>
 </guard>

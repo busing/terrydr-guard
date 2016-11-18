@@ -27,7 +27,10 @@ class Mail:
 				reciverArr=Mail.reciver.split(",")
 
 				msg=MIMEText(content+"\n\n[from terrydrGuard , hostname:"+socket.gethostname()+"]",'plain','utf-8')
-				msg['To']=Mail.formatAddr(u'攻城师们 <%s>' % Mail.reciver)
+				formatReciv="";
+				for to in reciverArr:
+					formatReciv+=","+Mail.formatAddr(to)
+				msg['To']=formatReciv
 				msg['From']=Mail.formatAddr(u'TerrydrGuard <%s>' % Mail.sender)
 				msg['Subject']=Header('【Warning】some application is breakdown',"utf-8")
 

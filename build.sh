@@ -21,18 +21,37 @@ logSucc(){
 
 package()
 {
-	mkdir build
-	cp * build
+	#检查目录
+	if [ -d terrydr-guard ]
+	then
+		rm -r terrydr-guard
+	fi
+	#创建目录
+	mkdir terrydr-guard
+	
+	#copy 文件到build目录
+	rsync -av --exclude  terrydr-guard *  terrydr-guard
 
 	#删除不需要的文件
-	rm build/*.pyc
-	rm -r build/log/
-	rm build/build.sh
-	rm build/conf/guard.xml
+	rm terrydr-guard/*.pyc
+	rm terrydr-guard/*.tar.gz
+
+
+	if [ -d terrydr-guard/log ]
+	then
+		rm -r terrydr-guard/log/*
+	fi
+	rm terrydr-guard/build.sh
+	rm terrydr-guard/conf/guard.xml
 
 	#恢复配置文件
-	mv build/conf/guard.xml.default build/conf/guard.xml
-	tar -xzvf terrydr-guard.tar.gz build/* 
+	mv terrydr-guard/conf/guard.xml.default terrydr-guard/conf/guard.xml
+
+	#打包
+	tar -czvf terrydr-guard.tar.gz terrydr-guard/
+
+	#清除目录
+	rm -r terrydr-guard
 }
 
 package

@@ -50,10 +50,10 @@ instal()
 		log "copy files "
 		cp -r * $install_path
 		rm $install_path/install.sh
-		# reconf
-		logSucc "installed"
-		python ${install_path}/GuardServer.py &
-		logSucc "start up GuardServer"
+		reconf
+		logSucc "terrydr guard has bean installed to $install_path"
+		logSucc "'python ${install_path}/GuardServer.py &' to start up guard"
+		# logSucc "start up GuardServer"
 	else
 		logError "terrydr guard is installed ,uninstall first"
 	fi
@@ -81,7 +81,7 @@ clearconf()
 	#清理已有配置
 	sed -i '/. \/etc\/profile/'d $profile
 	sed -i '/python \/usr\/local\/guard\/GuardServer.py/'d $profile
-	sed -i 'exit 0'd $profile
+	sed -i '/exit 0/'d $profile
 
 }
 

@@ -23,10 +23,10 @@ chmod +x install.sh
   安装之后会自动注册到/etc/rc.local 服务器重启自动启动GuardServer服务
     
 ##3.GuardServer（进程守护服务）
-    守护服务，每10秒中检测一下所有配置服务，如果有没有运行的服务，执行对应的启动命令，并发送邮件通知对应的用户。
+    守护服务，每10秒钟检测一下所有配置服务，如果有没有运行的服务，执行对应的启动命令，并发送邮件通知对应的用户。
     具体的邮件配置在conf/guard.xml
-    
-    服务启动命令：    
+   
+  服务启动命令：    
 ```shell
 python /usr/local/guard/GuardServer.py &
 ```
@@ -37,6 +37,7 @@ python TerrydrGuard.py add tomcat tomcat "sh /usr/local/tomcat/bin/startup.sh" #
 python TerrydrGuard.py stopmonitor tomcat #停止监控某个服务
 python TerrydrGuard.py startmonitor tomcat #启动监控某个服务
 python TerrydrGuard.py del tomcat #删除某个服务
+python TerrydrGuard.py status #查看所有监控服务的状态(pid)
 ```
 
 ##5.配置文件

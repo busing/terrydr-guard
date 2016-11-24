@@ -52,7 +52,7 @@ instal()
 		rm $install_path/install.sh
 		reconf
 		logSucc "terrydr guard has bean installed to $install_path"
-		logSucc "'python ${install_path}/GuardServer.py &' to start up guard"
+		logSucc "'python ${install_path}/GuardServer.pyc &' to start up guard"
 		# logSucc "start up GuardServer"
 	else
 		logError "terrydr guard is installed ,uninstall first"
@@ -80,7 +80,7 @@ clearconf()
 {
 	#清理已有配置
 	sed -i '/. \/etc\/profile/'d $profile
-	sed -i '/python \/usr\/local\/guard\/GuardServer.py/'d $profile
+	sed -i '/python \/usr\/local\/guard\/GuardServer.pyc/'d $profile
 	sed -i '/exit 0/'d $profile
 
 }
@@ -94,7 +94,7 @@ reconf()
 	clearconf
 	#添加新配置 追加配置
 	echo '. /etc/profile' >> $profile
-	echo 'python /usr/local/guard/GuardServer.py &' >> $profile
+	echo 'python /usr/local/guard/GuardServer.pyc &' >> $profile
 	echo 'exit 0' >> $profile
 }
 

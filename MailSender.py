@@ -75,7 +75,7 @@ class Mail:
 	def timeToSendMail(self):
 		lasttime=float(Mail.readSendTime())
 		currenttime=time.time()
-		if currenttime-lasttime>60*15 :#20分钟间隔
+		if currenttime-lasttime>60*15 :#15分钟间隔
 			return True
 		else:
 			return False

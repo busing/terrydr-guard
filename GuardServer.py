@@ -53,7 +53,7 @@ def startUp():
 			print "exit"
 			break
 		log.info("【exec TerrydrGuard】")
-		s=commands.getoutput("python %s/TerrydrGuard.py" % sys.path[0])
+		s=commands.getoutput("python %s/TerrydrGuard.pyc" % sys.path[0])
 		log.info(s)
 		time.sleep(10)
 

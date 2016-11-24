@@ -28,12 +28,14 @@ package()
 	fi
 	#创建目录
 	mkdir terrydr-guard
+	python -m compileall .
 	
 	#copy 文件到build目录
 	rsync -av --exclude  terrydr-guard *  terrydr-guard
 
+	rm terrydr-guard/*.py
 	#删除不需要的文件
-	rm terrydr-guard/*.pyc
+	#编译代码
 	rm terrydr-guard/*.tar.gz
 
 

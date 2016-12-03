@@ -6,6 +6,8 @@ import time
 import os
 import socket
 import traceback
+import urllib2
+import urllib
 from email.mime.text import MIMEText
 from email.header import Header
 from email.utils import parseaddr, formataddr
@@ -18,26 +20,43 @@ class Mail:
 	port = ""
 	password = ""
 	reciver = ""
+	mailapi=""
+	apisend=False
 	sendTimePath="log/sendTime"
 
 	@classmethod
 	def send(self,content):
 		try:
+			subject="【Warning】some application is breakdown"
 			if Mail.timeToSendMail():
-				reciverArr=Mail.reciver.split(",")
+				content+="\n\n[from terrydrGuard , hostname:"+socket.gethostname()+"]"
+				if Mail.apisend:
+					data={}
+					data['toAddress']=Mail.reciver
+					data['type']=0
+					data['content']=content
+					data['subject']=subject
+					data['personal']="TerrydrGuard"
+					post_data = urllib.urlencode(data)
+					req=urllib2.Request(Mail.mailapi,post_data)
+					response=urllib2.urlopen(req)
+					s=response.read()
+					print "response: %s" % s
+				else:
+					reciverArr=Mail.reciver.split
+					msg=MIMEText(content,'plain','utf-8')
+					formatReciv="";
+					for to in reciverArr:
+						formatReciv+=","+Mail.formatAddr(to)
+					msg['To']=formatReciv
+					msg['From']=Mail.formatAddr(u'TerrydrGuard <%s>' % Mail.sender)
+					msg['Subject']=Header(subject,"utf-8")
 
-				msg=MIMEText(content+"\n\n[from terrydrGuard , hostname:"+socket.gethostname()+"]",'plain','utf-8')
-				formatReciv="";
-				for to in reciverArr:
-					formatReciv+=","+Mail.formatAddr(to)
-				msg['To']=formatReciv
-				msg['From']=Mail.formatAddr(u'TerrydrGuard <%s>' % Mail.sender)
-				msg['Subject']=Header('【Warning】some application is breakdown',"utf-8")
+					server=smtplib.SMTP(Mail.smtp , int(Mail.port)) #发件人邮箱中的SMTP服务器，端口是25
+					server.login(Mail.sender , Mail.password)  #括号中对应的是发件人邮箱账号、邮箱密码
+					server.sendmail(Mail.sender,reciverArr,msg.as_string())  #括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
+					# server.quit()  #这句是关闭连接的意思
 
-				server=smtplib.SMTP(Mail.smtp , int(Mail.port)) #发件人邮箱中的SMTP服务器，端口是25
-				server.login(Mail.sender , Mail.password)  #括号中对应的是发件人邮箱账号、邮箱密码
-				server.sendmail(Mail.sender,reciverArr,msg.as_string())  #括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
-				# server.quit()  #这句是关闭连接的意思
 				print "send mail to",Mail.reciver
 				Mail.saveSendTime()
 

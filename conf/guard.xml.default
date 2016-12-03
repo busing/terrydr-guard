@@ -5,8 +5,10 @@
         <smtp>smtp.ym.163.com</smtp>
         <port>25</port>
         <password>5cy5v2oYxl</password>
+        <mailapi>http://swsiapi.terrydr.com/mail/sendMail</mailapi>
+        <apisend>yes</apisend>
     </mailserver>
-    <reciver>ytai@terrydr.com,ftwang@terrydr.com,zyyan@terrydr.com,syju@terrydr.com</reciver>
+    <reciver>ytai@terrydr.com,331936660@qq.com,ftwang@terrydr.com,664732852@qq.com,zyyan@terrydr.com,1296982220@qq.com,syju@terrydr.com,774514072@qq.com</reciver>
     <application>
         <name>tomcat</name>
         <key>tomcat</key>

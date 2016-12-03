@@ -39,6 +39,9 @@ class ConfLoad:
 		Mail.smtp=self.getNodeData(e,'smtp')
 		Mail.port=self.getNodeData(e,'port')
 		Mail.password=self.getNodeData(e,'password')
+		Mail.mailapi=self.getNodeData(e,'mailapi')
+		Mail.apisend=True if self.getNodeData(e,"apisend")=="yes" else False
+		
 		pass
 
 

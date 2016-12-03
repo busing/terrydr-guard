@@ -5,6 +5,8 @@
         <smtp>smtp.ym.163.com</smtp>
         <port>25</port>
         <password>5cy5v2oYxl</password>
+        <mailapi>http://swsiapi.terrydr.com/mail/sendMail</mailapi>
+        <apisend>yes</apisend>
     </mailserver>
     <reciver>ftwang@terrydr.com,ytai@terrydr.com</reciver>
     <application>

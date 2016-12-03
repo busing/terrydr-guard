@@ -43,7 +43,7 @@ class Mail:
 					s=response.read()
 					print "response: %s" % s
 				else:
-					reciverArr=Mail.reciver.split
+					reciverArr=Mail.reciver.split(",")
 					msg=MIMEText(content,'plain','utf-8')
 					formatReciv="";
 					for to in reciverArr:

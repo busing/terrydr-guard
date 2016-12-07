@@ -11,7 +11,7 @@ chmod +x build.sh
 ```
   当前目录会生成一个terrydr-guard.tar.gz的安装包
 
-##2.安装和卸载
+##2.安装和卸载(root 用户安装)
 ```shell
 tar -xzvf terrydr-guard.tar.gz
 cd terrydr-guard

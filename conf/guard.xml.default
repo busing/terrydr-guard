@@ -7,12 +7,13 @@
         <password>5cy5v2oYxl</password>
         <mailapi>http://10.24.139.120:8080/swsi_service/mail/sendMail</mailapi>
         <apisend>no</apisend>
+        <reciver>ytai@terrydr.com,331936660@qq.com,ftwang@terrydr.com,664732852@qq.com,zyyan@terrydr.com,1296982220@qq.com,syju@terrydr.com,774514072@qq.com</reciver>
     </mailserver>
-    <reciver>ytai@terrydr.com,331936660@qq.com,ftwang@terrydr.com,664732852@qq.com,zyyan@terrydr.com,1296982220@qq.com,syju@terrydr.com,774514072@qq.com</reciver>
     <application>
         <name>tomcat</name>
         <key>tomcat</key>
         <startup>sh /usr/local/tomcat/bin/startup.sh</startup>
+        <execuser>root</execuser>
         <guard>no</guard>
     </application>
 </guard>

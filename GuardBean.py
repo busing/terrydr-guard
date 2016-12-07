@@ -8,6 +8,7 @@ class Guard:
 	name = ""
 	key = ""
 	startup = ""
+	execuser = ""
 	guard=""
 
 	#检查是否存活
@@ -21,7 +22,7 @@ class Guard:
 
 	#执行启动脚本
 	def startUp(self):
-		(status,output)= commands.getstatusoutput(self.startup)
+		(status,output)= commands.getstatusoutput("su - %s -c '%s'" %(self.execuser,self.startup))
 		print (status,output)
 		print "startup",self.name
 

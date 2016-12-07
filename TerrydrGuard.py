@@ -11,6 +11,8 @@ options=sys.argv[1] if len(sys.argv)>1 else ""
 application=sys.argv[2] if len(sys.argv)>2 else ""
 key=sys.argv[3] if len(sys.argv)>3 else ""
 startup=sys.argv[4] if len(sys.argv)>4 else ""
+execuser=sys.argv[5] if len(sys.argv)>5 else "root"
+
 
 
 conf = ConfLoad()
@@ -75,7 +77,7 @@ def addApplication():
 	if application =="" or key=="" or startup=="":
 		printHelp()
 	else:
-		XmlUtil.addApplication(application,key,startup,"yes")
+		XmlUtil.addApplication(application,key,startup,"yes",execuser)
 
 def delApplication():
 	if application =="":

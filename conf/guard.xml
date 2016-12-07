@@ -1,18 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <guard>
-    <mailserver>
-        <sender>oss@terrydr.com</sender>
-        <smtp>smtp.ym.163.com</smtp>
-        <port>25</port>
-        <password>5cy5v2oYxl</password>
-        <mailapi>http://swsiapi.terrydr.com/mail/sendMail</mailapi>
-        <apisend>no</apisend>
-    </mailserver>
-    <reciver>ftwang@terrydr.com,ytai@terrydr.com</reciver>
-    <application>
-        <name>tomcat</name>
-        <key>tomcat</key>
-        <startup>sh /usr/local/tomcat/bin/startup.sh</startup>
-        <guard>yes</guard>
-    </application>
+  <mailserver>
+    <sender>oss@terrydr.com</sender>
+  <smtp>smtp.ym.163.com</smtp>
+  <port>25</port>
+  <password>5cy5v2oYxl</password>
+  <mailapi>http://swsiapi.terrydr.com/mail/sendMail</mailapi>
+  <apisend>no</apisend>
+  <reciver>ytai@terrydr.com</reciver>
+  </mailserver>
+<application>
+    <name>swsi</name>
+  <key>swsi</key>
+  <startup>sh /Users/taiyuan/git/swsi_comp/target/swsi-0.0.1-release/swsicomp.sh</startup>
+  <guard>yes</guard>
+  <execuser>terrydr</execuser>
+  </application>
 </guard>

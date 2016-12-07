@@ -9,7 +9,7 @@ tree=et.parse(xmlFile)
 root=tree.getroot()
 
 #添加守护程序
-def addApplication(application,key ,startup,guard):
+def addApplication(application,key ,startup,guard,execuser):
 	appEl=getAppNodeByAppName(application)
 	if appEl == None:
 		eApplication=et.SubElement(root,"application")
@@ -25,6 +25,9 @@ def addApplication(application,key ,startup,guard):
 
 		eGuard=et.SubElement(eApplication,"guard")
 		eGuard.text=guard
+
+		eExecuser=et.SubElement(eApplication,"execuser")
+		eExecuser.text=execuser
 		saveFile()
 	else:
 		print "application \"%s\" is already exists,del it first" % application

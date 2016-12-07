@@ -28,12 +28,12 @@ chmod +x install.sh
    
   服务启动命令：    
 ```shell
-python /usr/local/guard/GuardServer.py &
+python /usr/local/guard/GuardServer.py > /dev/null 2>&1 &
 ```
     
 ##4.TerrydrGuard（工具，命令）
 ```shell
-python TerrydrGuard.py add tomcat tomcat "sh /usr/local/tomcat/bin/startup.sh" #添加守护配置 [name] [key] [startup shell]
+python TerrydrGuard.py add tomcat tomcat "sh /usr/local/tomcat/bin/startup.sh" root #添加守护配置 [name] [key] [startup shell][exec user,default root]
 python TerrydrGuard.py stopmonitor tomcat #停止监控某个服务
 python TerrydrGuard.py startmonitor tomcat #启动监控某个服务
 python TerrydrGuard.py del tomcat #删除某个服务
@@ -59,6 +59,7 @@ python TerrydrGuard.py status #查看所有监控服务的状态(pid)
         <startup>sh /usr/local/tomcat/bin/startup.sh</startup>
         <!--是否守护-->
         <guard>no</guard>
+        <execuser>root</execuser>
     </application>
 </guard>
 ```

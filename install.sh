@@ -52,8 +52,15 @@ instal()
 		rm $install_path/install.sh
 		reconf
 		logSucc "terrydr guard has bean installed to $install_path"
-		logSucc "'python ${install_path}/GuardServer.pyc > /dev/null 2>&1 &' to start up guard"
-		# logSucc "start up GuardServer"
+		echo -n "start terrydr guard server now? (y/n) : "
+		read answer
+		if [[ $answer = 'y' || $answer = 'Y' ]];
+		then
+			python /usr/local/guard/GuardServer.pyc > /dev/null 2>&1 &
+			logSucc "start up terrydr guard server success , see logs in /usr/local/guard/log/ "
+		else
+			logSucc "'guardserver > /dev/null 2>&1 &' to start up terrydr guard servcer manual"
+		fi
 	else
 		logError "terrydr guard is installed ,uninstall first"
 	fi
@@ -80,9 +87,12 @@ clearconf()
 {
 	#清理已有配置
 	sed -i '/. \/etc\/profile/'d $profile
-	sed -i '/python \/usr\/local\/guard\/GuardServer.pyc/'d $profile
+	sed -i '/guard/'d $profile
 	sed -i '/exit 0/'d $profile
-
+	##删除alias
+	sed -i '/alias guard=/'d /etc/profile
+	sed -i '/alias guardserver/'d /etc/profile
+	source /etc/profile
 }
 
 
@@ -93,9 +103,12 @@ reconf()
 	#清理已有配置
 	clearconf
 	#添加新配置 追加配置
+	echo "alias guard='python /usr/local/guard/TerrydrGuard.pyc'" >> /etc/profile
+	echo "alias guardserver='python /usr/local/guard/GuardServer.pyc'" >> /etc/profile
 	echo '. /etc/profile' >> $profile
-	echo 'python /usr/local/guard/GuardServer.pyc > /dev/null 2>&1 &' >> $profile
+	echo 'guardserver > /dev/null 2>&1 &' >> $profile
 	echo 'exit 0' >> $profile
+	source /etc/profile
 }
 
 ##命令入口

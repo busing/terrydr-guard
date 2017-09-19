@@ -54,12 +54,12 @@ def status():
 
 def printHelp():
 	print 'unknow options'
-	print 'run \"python TerrydrGuard.py\" to check application at once'
-	print 'run \"python TerrydrGuard.py add [name] [key] [startup_shell]\" to add application for monitor'
-	print 'run \"python TerrydrGuard.py del [name]\" to delete application from monitor'
-	print 'run \"python TerrydrGuard.py stopmonitor [name]\" to stop monitor application'
-	print 'run \"python TerrydrGuard.py startmonitor [name]\" to start monitor application'
-	print 'run \"python TerrydrGuard.py status\" to view application status'
+	print 'run \"guard\" to check application at once'
+	print 'run \"guard add [name] [key] [startup_shell]\" to add application for monitor'
+	print 'run \"guard del [name]\" to delete application from monitor'
+	print 'run \"guard stopmonitor [name]\" to stop monitor application'
+	print 'run \"guard startmonitor [name]\" to start monitor application'
+	print 'run \"guard status\" to view application status'
 
 def stopMonitor():
 	if application =="":

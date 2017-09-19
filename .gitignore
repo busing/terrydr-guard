@@ -2,3 +2,4 @@
 terrydr-guard*.tar.gz
 .DS_Store
 log/
+.vscode/

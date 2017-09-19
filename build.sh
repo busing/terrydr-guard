@@ -54,6 +54,7 @@ package()
 
 	#清除目录
 	rm -r terrydr-guard
+	rm -rf *.pyc
 }
 
 package
